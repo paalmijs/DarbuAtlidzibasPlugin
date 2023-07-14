@@ -8,7 +8,6 @@ public class AtlidzibasPluginMain extends JavaPlugin {
     @Override
     public void onEnable() {
         getLogger().info("Atlīdzibas plugins tika ieslēgts.");
-
         this.getCommand("darbuatlidziba").setExecutor(new AtlidzibasPluginaKommanda());
     }
 
