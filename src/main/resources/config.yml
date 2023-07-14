@@ -1,5 +1,5 @@
 darbu-options:
-  Fermeris:
-  Kokcirtejs:
-  Mednieks:
-  Racejs:
+  - Fermeris
+  - Racejs
+  - Mednieks
+  - Kokcirtejs
