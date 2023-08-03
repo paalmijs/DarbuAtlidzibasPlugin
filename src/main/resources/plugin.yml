@@ -2,7 +2,9 @@ name: AtlidzibasPlugin
 version: 1.0
 main: lv.side.AtlidzibasPlugin.AtlidzibasPluginMain
 api-version: 1.19
-depend: [Jobs]
+deps:
+  - [SmartInvs]
+  - [Jobs]
 commands:
   darbuatlidziba:
     description: Command description here

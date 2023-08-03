@@ -1,5 +1,6 @@
 package lv.side.AtlidzibasPlugin;
 
+import org.bukkit.command.TabCompleter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 

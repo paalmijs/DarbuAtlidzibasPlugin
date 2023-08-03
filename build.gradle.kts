@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     compileOnly("org.spigotmc:spigot-api:1.19.2-R0.1-SNAPSHOT")
+    compileOnly("fr.minuskube.inv:smart-invs:1.2.7")
     compileOnly("com.github.Zrips:Jobs:v4.17.2") {
         exclude(group = "com.sk89q", module = "worldguard")
         exclude(group = "com.sk89q.worldguard", module = "worldguard-bukkit")
