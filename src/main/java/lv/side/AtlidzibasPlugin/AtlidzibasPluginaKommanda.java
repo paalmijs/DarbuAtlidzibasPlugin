@@ -192,7 +192,7 @@ public class AtlidzibasPluginaKommanda implements CommandExecutor, Listener, Tab
                 lore.add(ChatColor.BLUE + "Experience: " + experience);
 
                 if (jobName.equalsIgnoreCase("Mednieks")) {
-                    switch (rewardName.toLowerCase()) {
+                    switch (rewardName.toUpperCase()) {
                         case "SPIDER":
                         rewardMaterial = Material.STRING;
                         break;
