@@ -55,7 +55,7 @@ public class AtlidzibasPluginaKommanda implements CommandExecutor, Listener, Tab
             return true;
         }
 
-        Inventory gui = Bukkit.createInventory(null, 27, ChatColor.GOLD + jobName + "Rewards");
+        Inventory gui = Bukkit.createInventory(player, 27, ChatColor.GOLD + jobName + "Rewards");
 
         Map<ActionType, List<JobInfo>> jobInfoList = job.getJobInfoList();
 
@@ -63,12 +63,81 @@ public class AtlidzibasPluginaKommanda implements CommandExecutor, Listener, Tab
             List<JobInfo> jobInfos = entry.getValue();
 
             for (JobInfo jobInfo : jobInfos) {
-                String blockType = jobInfo.getName();
+                String rewardName = jobInfo.getName();
                 double income = jobInfo.getBaseIncome();
                 double experience = jobInfo.getBaseXp();
+                Material rewardMaterial = Material.getMaterial(rewardName.toUpperCase());
 
-                ItemStack item = createGuiItem(Material.getMaterial(blockType.toUpperCase()), ChatColor.YELLOW + blockType,
-                        ChatColor.GREEN + "Income: " + income, ChatColor.BLUE + "Experience: " + experience);
+                List<String> lore = new ArrayList<>();
+                lore.add(ChatColor.GREEN + "Income: " + income);
+                lore.add(ChatColor.BLUE + "Experience: " + experience);
+
+                if (jobName.equalsIgnoreCase("mednieks")) {
+                    switch (rewardName.toLowerCase()) {
+                        case "SPIDER":
+                        rewardMaterial = Material.STRING;
+                        break;
+                        case "SKELETON":
+                            rewardMaterial = Material.BONE;
+                            break;
+                        case "ZOMBIE":
+                            rewardMaterial = Material.ROTTEN_FLESH;
+                            break;
+                        case "BLAZE":
+                            rewardMaterial = Material.BLAZE_ROD;
+                            break;
+                        case "CAVE_SPIDER":
+                            rewardMaterial = Material.SPIDER_EYE;
+                            break;
+                        case "MAGMA_CUBE":
+                            rewardMaterial = Material.MAGMA_CREAM;
+                            break;
+                        case "SHULKER":
+                            rewardMaterial = Material.SHULKER_BOX;
+                            break;
+                        case "PHANTOM":
+                            rewardMaterial = Material.PHANTOM_MEMBRANE;
+                            break;
+                        case "CREEPER":
+                            rewardMaterial = Material.GUNPOWDER;
+                            break;
+                        case "ZOGLIN":
+                            rewardMaterial = Material.ROTTEN_FLESH;
+                            break;
+                        case "GHAST":
+                            rewardMaterial = Material.GHAST_TEAR;
+                            break;
+                        case "IRON_GOLEM":
+                            rewardMaterial = Material.IRON_BARS;
+                            break;
+                        case "SQUID":
+                            rewardMaterial = Material.INK_SAC;
+                            break;
+                        case "DROWNED":
+                            rewardMaterial = Material.TRIDENT;
+                            break;
+                        case "HUSK":
+                            rewardMaterial = Material.ROTTEN_FLESH;
+                            break;
+                        case "PILLAGER":
+                            rewardMaterial = Material.CROSSBOW;
+                            break;
+                        case "ENDERMAN":
+                            rewardMaterial = Material.ENDER_PEARL;
+                            break;
+                        case "GUARDIAN":
+                            rewardMaterial = Material.PRISMARINE_SHARD;
+                            break;
+                        case "PIGLIN":
+                            rewardMaterial = Material.GOLD_NUGGET;
+                            break;
+                        case "ZOMBIFIED_PIGLIN":
+                            rewardMaterial = Material.GOLD_NUGGET;
+                            break;
+                    }
+                }
+
+                ItemStack item = createGuiItem(rewardMaterial, ChatColor.YELLOW + rewardName, lore, 0);
                 gui.addItem(item);
             }
         }
@@ -79,12 +148,15 @@ public class AtlidzibasPluginaKommanda implements CommandExecutor, Listener, Tab
     }
 
     private void openMainGUI(Player player) {
-        Inventory gui = Bukkit.createInventory(null, 27, ChatColor.GOLD + "Choose a Job");
+        Inventory gui = Bukkit.createInventory(player, 27, ChatColor.GOLD + "Choose a Job");
 
-        ItemStack farmerIcon = createGuiItem(Material.NETHERITE_HOE, ChatColor.YELLOW + "Fermeris");
-        ItemStack minerIcon = createGuiItem(Material.NETHERITE_PICKAXE, ChatColor.YELLOW + "Racejs");
-        ItemStack hunterIcon = createGuiItem(Material.NETHERITE_SWORD, ChatColor.YELLOW + "Mednieks");
-        ItemStack woodcutterIcon = createGuiItem(Material.NETHERITE_AXE, ChatColor.YELLOW + "Kokcirtejs");
+        ItemStack farmerIcon = createGuiItem(Material.NETHERITE_HOE, ChatColor.YELLOW + "Fermeris", new ArrayList<>(), 0);
+        ItemStack minerIcon = createGuiItem(Material.NETHERITE_PICKAXE, ChatColor.YELLOW + "Racejs", new ArrayList<>(), 0);
+        ItemStack hunterIcon = createGuiItem(Material.NETHERITE_SWORD, ChatColor.YELLOW + "Mednieks", new ArrayList<>(), 0);
+        ItemStack woodcutterIcon = createGuiItem(Material.NETHERITE_AXE, ChatColor.YELLOW + "Kokcirtejs", new ArrayList<>(), 0);
+
+
+
 
         gui.setItem(10, farmerIcon);
         gui.setItem(12, minerIcon);
@@ -102,7 +174,7 @@ public class AtlidzibasPluginaKommanda implements CommandExecutor, Listener, Tab
             return;
         }
 
-        Inventory gui = Bukkit.createInventory(null, 27, ChatColor.GOLD + jobName + " Rewards");
+        Inventory gui = Bukkit.createInventory(player, 27, ChatColor.GOLD + jobName + " Rewards");
 
         Map<ActionType, List<JobInfo>> jobInfoList = job.getJobInfoList();
 
@@ -110,12 +182,81 @@ public class AtlidzibasPluginaKommanda implements CommandExecutor, Listener, Tab
             List<JobInfo> jobInfos = entry.getValue();
 
             for (JobInfo jobInfo : jobInfos) {
-                String blockType = jobInfo.getName();
+                String rewardName = jobInfo.getName();
                 double income = jobInfo.getBaseIncome();
                 double experience = jobInfo.getBaseXp();
+                Material rewardMaterial = Material.getMaterial(rewardName.toUpperCase());
 
-                ItemStack item = createGuiItem(Material.getMaterial(blockType.toUpperCase()), ChatColor.YELLOW + blockType,
-                        ChatColor.GREEN + "Income: " + income, ChatColor.BLUE + "Experience: " + experience);
+                List<String> lore = new ArrayList<>();
+                lore.add(ChatColor.GREEN + "Income: " + income);
+                lore.add(ChatColor.BLUE + "Experience: " + experience);
+
+                if (jobName.equalsIgnoreCase("mednieks")) {
+                    switch (rewardName.toLowerCase()) {
+                        case "SPIDER":
+                        rewardMaterial = Material.STRING;
+                        break;
+                        case "SKELETON":
+                            rewardMaterial = Material.BONE;
+                            break;
+                        case "ZOMBIE":
+                            rewardMaterial = Material.ROTTEN_FLESH;
+                            break;
+                        case "BLAZE":
+                            rewardMaterial = Material.BLAZE_ROD;
+                            break;
+                        case "CAVE_SPIDER":
+                            rewardMaterial = Material.SPIDER_EYE;
+                            break;
+                        case "MAGMA_CUBE":
+                            rewardMaterial = Material.MAGMA_CREAM;
+                            break;
+                        case "SHULKER":
+                            rewardMaterial = Material.SHULKER_BOX;
+                            break;
+                        case "PHANTOM":
+                            rewardMaterial = Material.PHANTOM_MEMBRANE;
+                            break;
+                        case "CREEPER":
+                            rewardMaterial = Material.GUNPOWDER;
+                            break;
+                        case "ZOGLIN":
+                            rewardMaterial = Material.ROTTEN_FLESH;
+                            break;
+                        case "GHAST":
+                            rewardMaterial = Material.GHAST_TEAR;
+                            break;
+                        case "IRON_GOLEM":
+                            rewardMaterial = Material.IRON_BARS;
+                            break;
+                        case "SQUID":
+                            rewardMaterial = Material.INK_SAC;
+                            break;
+                        case "DROWNED":
+                            rewardMaterial = Material.TRIDENT;
+                            break;
+                        case "HUSK":
+                            rewardMaterial = Material.ROTTEN_FLESH;
+                            break;
+                        case "PILLAGER":
+                            rewardMaterial = Material.CROSSBOW;
+                            break;
+                        case "ENDERMAN":
+                            rewardMaterial = Material.ENDER_PEARL;
+                            break;
+                        case "GUARDIAN":
+                            rewardMaterial = Material.PRISMARINE_SHARD;
+                            break;
+                        case "PIGLIN":
+                            rewardMaterial = Material.GOLD_NUGGET;
+                            break;
+                        case "ZOMBIFIED_PIGLIN":
+                            rewardMaterial = Material.GOLD_NUGGET;
+                            break;
+                    }
+                }
+
+                ItemStack item = createGuiItem(rewardMaterial, ChatColor.YELLOW + rewardName, lore, 0);
                 gui.addItem(item);
             }
         }
@@ -123,17 +264,22 @@ public class AtlidzibasPluginaKommanda implements CommandExecutor, Listener, Tab
         player.openInventory(gui);
     }
 
-    protected ItemStack createGuiItem(final Material material, final String name, final String... lore) {
-        final ItemStack item = new ItemStack(material, 1);
-        final ItemMeta meta = item.getItemMeta();
+    protected ItemStack createGuiItem(Material material, String name, List<String> lore, int i) {
+        if (material == null) {
+            return new ItemStack(Material.AIR);
+        }
+
+        ItemStack item = new ItemStack(material);
+        ItemMeta meta = item.getItemMeta();
 
         meta.setDisplayName(name);
-        meta.setLore(java.util.Arrays.asList(lore));
+        meta.setLore(lore);
 
         item.setItemMeta(meta);
 
         return item;
     }
+
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
@@ -152,21 +298,22 @@ public class AtlidzibasPluginaKommanda implements CommandExecutor, Listener, Tab
 
         String itemName = ChatColor.stripColor(clickedItem.getItemMeta().getDisplayName());
 
-        switch (itemName) {
-            case "Fermeris":
+        switch (itemName.toLowerCase()) {
+            case "fermeris":
                 openJobGui(player, "Fermeris");
                 break;
-            case "Racejs":
+            case "racejs":
                 openJobGui(player, "Racejs");
                 break;
-            case "Mednieks":
+            case "mednieks":
                 openJobGui(player, "Mednieks");
                 break;
-            case "Kokcirtejs":
+            case "kokcirtejs":
                 openJobGui(player, "Kokcirtejs");
                 break;
         }
     }
+
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String label, String[] args) {
         if (args.length == 1) {
