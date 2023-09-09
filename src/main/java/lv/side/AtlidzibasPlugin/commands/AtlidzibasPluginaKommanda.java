@@ -1,9 +1,10 @@
-package lv.side.AtlidzibasPlugin;
+package lv.side.AtlidzibasPlugin.commands;
 
 import com.gamingmesh.jobs.Jobs;
 import com.gamingmesh.jobs.container.ActionType;
 import com.gamingmesh.jobs.container.Job;
 import com.gamingmesh.jobs.container.JobInfo;
+import lv.side.AtlidzibasPlugin.AtlidzibasPluginMain;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
