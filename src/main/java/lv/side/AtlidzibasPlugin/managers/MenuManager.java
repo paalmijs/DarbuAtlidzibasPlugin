@@ -25,15 +25,26 @@ public class MenuManager {
         this.plugin = plugin;
     }
 
-    public void openJobGUI(Player player, String jobName) {
-        Job job = Jobs.getJob(jobName);
+    public void openMainGUI(Player player) {
+        Inventory gui = Bukkit.createInventory(player, 27, ChatColor.GOLD + "Choose a Job");
 
-        if (job == null) {
-            player.sendMessage("Invalid job name.");
-            return;
-        }
+        ItemStack farmerIcon = createGuiItem(Material.NETHERITE_HOE, ChatColor.YELLOW + "Fermeris", new ArrayList<>(), 0);
+        ItemStack minerIcon = createGuiItem(Material.NETHERITE_PICKAXE, ChatColor.YELLOW + "Racejs", new ArrayList<>(), 0);
+        ItemStack hunterIcon = createGuiItem(Material.NETHERITE_SWORD, ChatColor.YELLOW + "Mednieks", new ArrayList<>(), 0);
+        ItemStack woodcutterIcon = createGuiItem(Material.NETHERITE_AXE, ChatColor.YELLOW + "Kokcirtejs", new ArrayList<>(), 0);
+
+
+
+
+        gui.setItem(10, farmerIcon);
+        gui.setItem(12, minerIcon);
+        gui.setItem(14, hunterIcon);
+        gui.setItem(16, woodcutterIcon);
+
+        player.openInventory(gui);
     }
-    private void openJobGui(Player player, String jobName) {
+
+    public void openJobGUI(Player player, String jobName) {
         Job job = Jobs.getJob(jobName);
 
         if (job == null) {

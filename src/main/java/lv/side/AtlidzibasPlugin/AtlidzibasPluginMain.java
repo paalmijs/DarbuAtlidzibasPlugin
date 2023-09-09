@@ -26,8 +26,6 @@ public class AtlidzibasPluginMain extends JavaPlugin {
         loadConfigValues();
 
         getCommand("darbuatlidziba").setExecutor(new AtlidzibasPluginaKommanda(this));
-        getCommand("darbuatlidziba").setTabCompleter(new AtlidzibasPluginaKommanda(this));
-
     }
 
     @Override
