@@ -5,6 +5,7 @@ import com.gamingmesh.jobs.container.ActionType;
 import com.gamingmesh.jobs.container.Job;
 import com.gamingmesh.jobs.container.JobInfo;
 import lv.side.AtlidzibasPlugin.AtlidzibasPluginMain;
+import lv.side.AtlidzibasPlugin.listeners.MenuListeners;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -17,15 +18,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+
 public class MenuManager {
 
-    private AtlidzibasPluginMain plugin;
+    private final AtlidzibasPluginMain plugin;
+
+    private MenuManager menuManager;
 
     public MenuManager(AtlidzibasPluginMain plugin) {
         this.plugin = plugin;
     }
 
-    public void openMainGUI(Player player) {
+    public Inventory openMainGUI(Player player) {
         Inventory gui = Bukkit.createInventory(player, 27, ChatColor.GOLD + "Choose a Job");
 
         ItemStack farmerIcon = createGuiItem(Material.NETHERITE_HOE, ChatColor.YELLOW + "Fermeris", new ArrayList<>(), 0);
@@ -34,15 +38,16 @@ public class MenuManager {
         ItemStack woodcutterIcon = createGuiItem(Material.NETHERITE_AXE, ChatColor.YELLOW + "Kokcirtejs", new ArrayList<>(), 0);
 
 
-
-
         gui.setItem(10, farmerIcon);
         gui.setItem(12, minerIcon);
         gui.setItem(14, hunterIcon);
         gui.setItem(16, woodcutterIcon);
 
         player.openInventory(gui);
+        return gui;
     }
+
+
 
     public void openJobGUI(Player player, String jobName) {
         Job job = Jobs.getJob(jobName);
@@ -64,7 +69,6 @@ public class MenuManager {
                 double income = jobInfo.getBaseIncome();
                 double experience = jobInfo.getBaseXp();
                 Material rewardMaterial = Material.getMaterial(rewardName.toUpperCase());
-
                 List<String> lore = new ArrayList<>();
                 lore.add(ChatColor.GREEN + "Income: " + income);
                 lore.add(ChatColor.BLUE + "Experience: " + experience);
@@ -138,6 +142,9 @@ public class MenuManager {
                 gui.addItem(item);
             }
         }
+
+        ItemStack returnIcon = createGuiItem(Material.BARRIER, ChatColor.YELLOW + "Return", new ArrayList<>(), 0);
+        gui.setItem(26, returnIcon);
 
         player.openInventory(gui);
     }

@@ -44,7 +44,22 @@ public class AtlidzibasPluginaKommanda implements CommandExecutor, Listener, Tab
             player.sendMessage("Invalid job name.");
             return true;
         }
-        return false;
+
+        switch (jobName.toLowerCase()) {
+            case "fermeris":
+                atlidzibasPluginMain.getMenuManager().openJobGUI(player, "Fermeris");
+                break;
+            case "racejs":
+                atlidzibasPluginMain.getMenuManager().openJobGUI(player, "Racejs");
+                break;
+            case "mednieks":
+                atlidzibasPluginMain.getMenuManager().openJobGUI(player, "Mednieks");
+                break;
+            case "kokcirtejs":
+                atlidzibasPluginMain.getMenuManager().openJobGUI(player, "Kokcirtejs");
+                break;
+        }
+        return true;
     }
 
     @Override

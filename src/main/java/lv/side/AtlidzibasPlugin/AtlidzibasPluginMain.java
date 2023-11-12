@@ -6,22 +6,19 @@ import lv.side.AtlidzibasPlugin.managers.MenuManager;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.awt.*;
 import java.util.List;
 
 
 public class AtlidzibasPluginMain extends JavaPlugin {
     private List<String> darbuOptions;
 
-    private AtlidzibasPluginaKommanda atlKommanda;
-
-    private MenuListeners menuListeners;
-    private MenuManager menuManager;
+    public MenuManager menuManager;
 
     @Override
     public void onEnable() {
         this.menuManager = new MenuManager(this);
         getLogger().info("Atlīdzibas plugins tika ieslēgts.");
+        getServer().getPluginManager().registerEvents(new MenuListeners(this), this);
 
         loadConfigValues();
 
@@ -42,14 +39,6 @@ public class AtlidzibasPluginMain extends JavaPlugin {
 
     public List<String> getDarbuOptions() {
         return darbuOptions;
-    }
-
-    public AtlidzibasPluginaKommanda getAtlKommanda() {
-        return atlKommanda;
-    }
-
-    public MenuListeners getMenuListeners(){
-        return menuListeners;
     }
 
     public MenuManager getMenuManager(){
